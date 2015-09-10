@@ -54,13 +54,36 @@ class Braille
     new_array
   end
 
-
   def find_letter(value)
     Letters.new.find_key(value)
   end
 
-  def create_words
-
+  def create_values_first_third
+    split_third_third_into_six.map do |array|
+      array.join.gsub('.', '1')
+    end
   end
+
+  def create_values_second_third
+    split_second_third_into_six.map do |array|
+      array.join.gsub('.', '1')
+    end
+  end
+
+  def create_values_last_third
+    split_last_third_into_six.map do |array|
+      array.join.gsub('.', '1')
+    end
+  end
+
+  def create_words
+    words = []
+    create_values_last_third.each do |value|
+      words << find_letter(value)
+    end
+    words
+  end
+
+
 
 end
