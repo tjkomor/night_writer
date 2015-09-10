@@ -13,7 +13,7 @@ class LettersTest < Minitest::Test
     refute_equal '345681', letters.find_value('w')
   end
 
-  def test_values_hold_correct_letters
+  def test_values_hold_correct_letter
     letters = Letters.new
     assert_equal 't', letters.find_key('100001')
     assert_equal 'z', letters.find_key('011000')

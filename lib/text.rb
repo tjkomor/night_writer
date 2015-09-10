@@ -2,28 +2,31 @@ require './lib/letters'
 class Text
   attr_reader :string
   def initialize(string)
-    @string = string
-    @letters = Letters.new
+    @string = string.chomp
     @line_1 = []
     @line_2 = []
     @line_3 = []
   end
 
-  def split
-    @string.chars
+  def split_string
+    if @string.length > 40
+      "too many words"
+    else
+      @string.chars
+    end
   end
 
   def get_value
-    split.map do |letter|
-     @letters.find_value(letter)
-   end
+    split_string.map do |letter|
+      Letters.new.find_value(letter)
+    end
   end
 
   def split_values
     get_value.join.chars
   end
 
-  def insert_values
+  def create_lines
     index = 0
     counter = 0
     split_values_store = split_values
@@ -38,16 +41,16 @@ class Text
     end
   end
 
-  def line_one
-    @line_1.flatten
+  def line_one_to_braille
+    @line_1.flatten.join.gsub('1', '.')
   end
 
-  def line_two
-    @line_2.flatten
+  def line_two_to_braille
+    @line_2.flatten.join.gsub('1', '.')
   end
 
-  def line_three
-    @line_3.flatten
+  def line_three_to_braille
+    @line_3.flatten.join.gsub('1', '.')
   end
 
 
