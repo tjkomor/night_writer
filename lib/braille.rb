@@ -59,7 +59,7 @@ class Braille
   end
 
   def create_values_first_third
-    split_third_third_into_six.map do |array|
+    split_first_third_into_six.map do |array|
       array.join.gsub('.', '1')
     end
   end
@@ -83,7 +83,5 @@ class Braille
     end
     words
   end
-
-
 
 end

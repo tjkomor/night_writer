@@ -26,13 +26,13 @@ class BrailleTest < Minitest::Test
   def test_it_can_assemble_correct_array_of_braille_values_for_second_third
     braille = Braille.new("0.0.00..0..000.0.0..000.....00......")
     braille.assemble_values
-    assert_equal ["0", ".", ".", ".", "0", "."], braille.second_third
+    assert_equal ["0", ".", "0", ".", ".", "0", "0", "0", ".", ".", ".", "."], braille.second_third
   end
 
   def test_it_can_assemble_correct_array_of_braille_values_for_last_third
     braille = Braille.new("0.0.00..0..000.0.0..000.....00......")
     braille.assemble_values
-    assert_equal ["0", "0", ".", ".", "0", "."], braille.last_third
+    assert_equal ["0", "0", ".", "0", ".", "0", "0", ".", "0", "0", ".", "."], braille.last_third
   end
 
   def test_it_can_find_value_of_one_letter
@@ -80,13 +80,5 @@ class BrailleTest < Minitest::Test
     braille.assemble_values
     assert_equal ["001010", "010011"], braille.create_values_last_third
   end
-
-  def test_it_can_find_values_of_multiple_letters
-    braille = Braille.new("0.0.00..0..000.0.0..000.....00......")
-    braille.assemble_values
-    assert_equal "hey hi", braille.create_words
-  end
-
-
 
 end
