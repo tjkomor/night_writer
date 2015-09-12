@@ -1,45 +1,26 @@
 require './lib/text'
+
 class NightWrite
   attr_reader :input
-  def initialize
-    @input = IO.readlines(ARGV[0])
-    @output = File.open(ARGV[1], 'w')
-    @lines = []
+
+  def initialize(input_filename, output_filename)
+    @input  = IO.readlines(input_filename)
+    @output = File.open(output_filename, 'w')
   end
 
-  def convert_text
-    text = Text.new(@input.join)
-    text.split_string
-    text.get_value
-    text.split_values
-    text.create_lines
-    @one = text.line_one_to_braille
-    @two = text.line_two_to_braille
-    @three = text.line_three_to_braille
+  def make_braille
+    output_braille(text.braille)
   end
 
-  def join_braille
-    @lines << @one
-    @lines << @two
-    @lines << @three
+  private
+
+  def output_braille(braille)
+    @output.write(braille)
   end
 
-  def output_braille
-    @output.write(@lines.join("\n"))
+  def text
+    @text ||= Text.new(@input.join)
   end
-
 end
 
-write = NightWrite.new
-write.convert_text
-write.join_braille
-write.output_braille
-
-
-
-
-
-
-
-
-# File.open(ARGV[1], 'w')
+NightWrite.new(ARGV[0], ARGV[1]).make_braille

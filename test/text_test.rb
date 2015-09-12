@@ -6,6 +6,14 @@ require './lib/text'
 
 class TextTest < Minitest::Test
 
+  def test_it_converts_english_to_braille
+    braille = "0.0.0.0.0....00.0.0.00\n" +
+              "00.00.0..0..00.0000..0\n" +
+              "....0.0.0....00.0.0..."
+    assert_equal braille, Text.new("hello world").braille
+  end
+
+
   def test_it_can_take_in_string
     text = Text.new("hello")
     assert_equal "hello", text.string

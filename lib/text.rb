@@ -8,6 +8,21 @@ class Text
     @line_3 = []
   end
 
+  def braille
+    split_string
+    get_value
+    split_values
+    create_lines
+    lines.join("\n")
+  end
+
+  def lines
+    [ line_one_to_braille,
+      line_two_to_braille,
+      line_three_to_braille,
+    ]
+  end
+
   def split_string
     if @string.length > 40
       "too many words"
